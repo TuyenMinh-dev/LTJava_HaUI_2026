@@ -11,4 +11,5 @@ package TX1.train;
 public enum BoPhan {
     KinhDoanh,
     KyThuat
+    
 }
