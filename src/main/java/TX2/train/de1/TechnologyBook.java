@@ -4,11 +4,13 @@
  */
 package TX2.train.de1;
 
+import java.util.Objects;
+
 /**
  *
  * @author IT SUPPORTER
  */
-public class TechnologyBook extends Book implements Comparable<TechnologyBook>{// comparable đe TreeSet co the sap xep
+public class TechnologyBook extends Book implements Comparable<TechnologyBook> {// comparable đe TreeSet co the sap xep
 
     private int numberpage;
     private String authorname;
@@ -27,7 +29,7 @@ public class TechnologyBook extends Book implements Comparable<TechnologyBook>{/
     @Override
     public void printTitle() {
         super.printTitle();
-        System.out.printf("| %-15s | %-25s | %-15s |\n","numberpage","authorname","discount");
+        System.out.printf("| %-15s | %-25s | %-15s |\n", "numberpage", "authorname", "discount");
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
 
     }
@@ -52,7 +54,6 @@ public class TechnologyBook extends Book implements Comparable<TechnologyBook>{/
         }
         this.numberpage = numberpage;
     }
-    
 
     public void setAuthorname(String authorname) throws Exception {
         if (authorname == null || authorname.trim().isEmpty()) {
@@ -60,14 +61,37 @@ public class TechnologyBook extends Book implements Comparable<TechnologyBook>{/
         }
         this.authorname = authorname;
     }
+
     @Override
     public int compareTo(TechnologyBook other) {
         return Integer.compare(this.bookid, other.bookid);
     }
-    public String getAuthorname(){
+    
+    //hai ham danh cho hashSet
+    /*@Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Book book = (Book) o;
+        // So sánh dựa trên tên sách (dùng equals của String)
+        return Objects.equals(bookname, book.bookname);
+    }
+
+    @Override
+    public int hashCode() {
+        // Tạo mã băm dựa trên tên sách
+        return Objects.hash(bookname);
+    }*/
+
+    public String getAuthorname() {
         return authorname;
     }
-    public int getNumberpage(){
+
+    public int getNumberpage() {
         return numberpage;
     }
 
