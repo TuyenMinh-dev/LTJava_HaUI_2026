@@ -4,7 +4,12 @@
  */
 package TX2.train.de2;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -38,7 +43,7 @@ public class CPUManager implements ICPUManager {
     public void searchByBrand(String brand) throws Exception {
         boolean find = false;
         for (CPU x : cpnList) {
-            if (x.getNameUpperCase().equalsIgnoreCase(brand)) {
+            if (x.getBrand().equalsIgnoreCase(brand)) {
                 if (!find) {
                     x.printTitle();
                     find = true;
@@ -46,23 +51,60 @@ public class CPUManager implements ICPUManager {
                 x.printData();
             }
         }
-        if(!find){
-            throw new Exception("Khong ton tai brand ten "+ brand);
+        if (!find) {
+            throw new Exception("Khong ton tai brand ten " + brand);
         }
     }
+
     @Override
-    public void saveFile(String fileName) throws Exception{
-        
+    public void saveFile(String fileName) throws Exception {
+        DataOutputStream dos = new DataOutputStream(new FileOutputStream(fileName));
+        dos.writeInt(cpnList.size());// luu truoc so luong phan tu de con dung vong lap
+        for( CPU x : cpnList){
+           dos.writeInt(x.getId());
+           dos.writeUTF(x.getNameUpperCase());
+           dos.writeInt(x.getQuantity());
+           dos.writeDouble(x.getBasePrice());
+           dos.writeInt(x.getCoreCount());
+           dos.writeUTF(x.getBrand());
+        }
+        System.out.println("Da luu file thanh cong");
     }
-    
+
     @Override
-    public void readFile(String fileName) throws Exception{
-        
+    public void readFile(String fileName) throws Exception {
+        DataInputStream dis = new DataInputStream(new FileInputStream(fileName));
+        int size = dis.readInt();// doc so luong dau tien 
+        cpnList.clear();// xoa cu de nap moi
+        for(int i=0 ; i<size;i++){
+         int id=dis.readInt();
+         String name=dis.readUTF();
+         int qty = dis.readInt();
+         double price=dis.readDouble();
+         int cores =dis.readInt();
+         String brand=dis.readUTF();
+         
+         CPU a = new CPU(id,name,qty,price,cores,brand);
+         cpnList.add(a);
+        }
+        System.out.println("Doc file thanh cong ");
     }
-    
+
     @Override
-    public void displayAll() throws Exception{
-        
+    public void displayAll() throws Exception {
+        if (cpnList.isEmpty()) {
+            throw new Exception("Danh sach rong!");
+        }
+        Iterator<CPU> it = cpnList.iterator();
+        boolean isFisrt = true;
+        while (it.hasNext()) {
+            CPU x = it.next();
+            if (isFisrt) {
+                x.printTitle();
+                isFisrt = false;
+            }
+            x.printData();
+        }
     }
 
 }

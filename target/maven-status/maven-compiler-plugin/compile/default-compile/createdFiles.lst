@@ -1,4 +1,5 @@
 TX1\train\de3\IEntity.class
+TX2\train\de2\Component.class
 TX2\train\de1\TechnologyBook.class
 ThucHanhB4\HTron.class
 TX1\train\de1\NhanVienControl.class
@@ -6,11 +7,14 @@ TX1\train\de1\NhanVien.class
 TX2\train\de1\TechnologyBookManager.class
 ThucHanhB2\Demo.class
 TX1\train\de2\MonHocControl.class
+TX2\train\de2\ICPUManager.class
+TX2\train\de2\CPU.class
 ThucHanhB2\SinhVien.class
 TX1\train\de1\IEntity.class
 TX1\train\de3\NhanVienControl.class
 TX2\train\de1\Book.class
 ThucHanhB4\PTB2.class
+TX2\train\de2\CPUManager.class
 ThucHanhB4\Xedemo.class
 TX1\train\de2\MonHoc.class
 ThucHanhB4\Xe.class
@@ -18,6 +22,7 @@ TX1\train\de3\Demo.class
 ThucHanhB2\IStudentUtils.class
 TX1\train\de2\LoaiMon.class
 TX1\train\de3\NhanVien.class
+TX2\train\de2\Main.class
 com\mycompany\ltjava_hk4\LTJAVA_HK4.class
 TX1\train\de3\BoPhan.class
 ThucHanhB2\MajorType.class

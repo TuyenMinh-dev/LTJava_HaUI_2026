@@ -39,6 +39,16 @@ public abstract class Component {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Component() {
+    }
+
+    public Component(int id, String name, int quantity, double basePrice) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.basePrice = basePrice;
+    }
     
 
 }

@@ -19,11 +19,12 @@ public class CPU extends Component {
     public void printTitle() {
         super.printTitle();
         System.out.printf("| %-10s | %-20s | %-20s |", "coreCount", "brand", "tax");
-        System.out.println("---------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------\n");
     }
 
     @Override
     public void printData() {
+        super.printData();
         System.out.printf("| %-10d | %-20s | %-20.1f |", this.coreCount, this.brand, calculateTax());
     }
 
@@ -71,4 +72,55 @@ public class CPU extends Component {
         return Objects.hash(id);
 
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public int getCoreCount() {
+        return coreCount;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public CPU() {
+        super();
+    }
+
+    public CPU(int id, String name, int quantity, double basePrice, int coreCount, String brand ) throws Exception {
+        super(id, name, quantity, basePrice);
+        setCoreCount(coreCount);
+        setBrand(brand);
+    }
+
 }
