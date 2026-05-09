@@ -18,20 +18,20 @@ public class CPU extends Component {
     @Override
     public void printTitle() {
         super.printTitle();
-        System.out.printf("| %-10s | %-20s | %-20s |", "coreCount", "brand", "tax");
-        System.out.println("---------------------------------------------------------------------\n");
+        System.out.printf("| %-10s | %-20s | %-20s |\n", "coreCount", "brand", "tax");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------");
     }
 
     @Override
     public void printData() {
         super.printData();
-        System.out.printf("| %-10d | %-20s | %-20.1f |", this.coreCount, this.brand, calculateTax());
+        System.out.printf("| %-10d | %-20s | %-20.1f |\n", this.coreCount, this.brand, calculateTax());
     }
 
     @Override
     public double calculateTax() {
         double tax = 0;
-        if (this.brand == "Intel") {
+        if (this.brand.equalsIgnoreCase("Intel")) {
             tax = 0.1 * this.basePrice;
         } else {
             tax = 0.05 * this.basePrice;

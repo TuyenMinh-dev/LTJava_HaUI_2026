@@ -4,7 +4,11 @@
  */
 package TX2.train.de3;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 /**
@@ -48,9 +52,38 @@ public class ITProjectManager {
             throw new Exception("Khong tim thay du an su dung nnlt " + lang);
         }
     }
-    public void saveFile(String fileName) throws Exception{
-      FileOutputStream a = new FileOutputStream(fileName );
-      OjectOutputStream b = new OjectOutputStream(a);
-      
+
+    public void saveFile(String fileName) throws Exception {
+        FileOutputStream a = new FileOutputStream(fileName);
+        ObjectOutputStream b = new ObjectOutputStream(a);
+        b.writeObject(prList);
+        b.close();
+        a.close();
+        System.out.println("Luu file thanh cong");
+    }
+
+    public void readFile(String fileName) throws Exception {
+        FileInputStream x = new FileInputStream(fileName);
+        ObjectInputStream y = new ObjectInputStream(x);
+        prList = (TreeSet<ITProject>) y.readObject();
+        y.close();
+        x.close();
+        System.out.println("Doc file thanh cong");
+    }
+
+    public void printList() {
+        if (prList.isEmpty()) {
+            System.out.println("Danh sach rong");
+        }
+        Iterator<ITProject> it = prList.iterator();
+        boolean isFisrt = true;
+        while (it.hasNext()) {
+            ITProject x = it.next();
+            if (isFisrt) {
+                x.printTitle();
+                isFisrt = false;
+            }
+            x.printData();
+        }
     }
 }
